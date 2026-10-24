@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+const kPrimary = Color(0xFF0F766E);
+const kPrimaryDark = Color(0xFF115E59);
+const kAccent = Color(0xFFF59E0B);
+
+class Book {
+  final int id;
+  final String title;
+  final String author;
+  final String? downloadUrl;
+  final String? coverUrl;
+  final String ext;
+  final bool copyrighted;
+
+  Book({
+    required this.id,
+    required this.title,
+    required this.author,
+    required this.downloadUrl,
+    required this.coverUrl,
+    required this.ext,
+    required this.copyrighted,
+  });
+
+  bool get canDownload => downloadUrl != null && !copyrighted;
+
+  factory Book.fromJson(Map<String, dynamic> j) {
+    final formats = Map<String, dynamic>.from(j['formats'] ?? {});
+    String? url;
+    String ext = 'epub';
+    if (f
